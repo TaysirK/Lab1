@@ -1,0 +1,30 @@
+@startuml AreaCalculator
+
+abstract class Shape {
+  + getArea(): double
+}
+
+class Circle {
+  - _radius: double
+  + Circle(radius: double)
+  + getRadius(): double
+  + getArea(): double
+}
+
+class Square {
+  - _side: double
+  + Square(side: double)
+  + getSide(): double
+  + getArea(): double
+}
+
+class AreaCalculator {
+  + calculateArea(shapes: List<Shape>): void
+}
+
+Shape <|-- Circle
+Shape <|-- Square
+AreaCalculator --> Shape : uses
+
+
+@enduml

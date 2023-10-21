@@ -1,0 +1,40 @@
+@startuml Resource
+
+interface Resource {
+  + allocate(): int
+  + free(resourceId: int): void
+  + markBusy(resourceId: int): void
+  + markFree(resourceId: int): void
+}
+
+class TimeSlotResource {
+  + allocate(): int
+  + free(resourceId: int): void
+  + markBusy(resourceId: int): void
+  + markFree(resourceId: int): void
+}
+
+class SpaceSlotResource {
+  + allocate(): int
+  + free(resourceId: int): void
+  + markBusy(resourceId: int): void
+  + markFree(resourceId: int): void
+}
+
+class ResourceAllocator {
+  - resourceMap: Map<ResourceType, Resource>
+  + ResourceAllocator()
+  + allocate(resourceType: ResourceType): int
+  + free(resourceType: ResourceType, resourceId: int): void
+  + markBusy(resourceType: ResourceType, resourceId: int): void
+  + markFree(resourceType: ResourceType, resourceId: int): void
+}
+
+
+
+Resource <|-- TimeSlotResource
+Resource <|-- SpaceSlotResource
+ResourceAllocator --|> Resource : uses
+
+
+@enduml

@@ -1,0 +1,38 @@
+@startuml Factory
+
+interface IWorker {
+  + work(): String
+}
+
+interface IEater {
+  + eat(): String
+}
+
+class Human {
+  + work(): String
+  + eat(): String
+}
+
+class Robot {
+  + work(): String
+}
+
+class FloorManager {
+  - workers: List<IWorker>
+  + FloorManager(workers: List<IWorker>)
+  + manage(): void
+}
+
+class MessHall {
+  - eaters: List<IEater>
+  + MessHall(eaters: List<IEater>)
+  + manage(): void
+}
+
+IWorker <|.. Human
+IWorker <|.. Robot
+IEater <|.. Human
+FloorManager --|> IWorker
+MessHall --|> IEater
+
+@enduml

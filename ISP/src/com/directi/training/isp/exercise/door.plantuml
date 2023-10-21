@@ -1,0 +1,50 @@
+@startuml Door
+
+interface Door {
+  + lock()
+  + unlock()
+  + open()
+  + close()
+  + timeOutCallback()
+  + proximityCallback()
+}
+
+class Sensor {
+  + register(door: Door): void
+}
+
+class SensingDoor {
+  - _locked: boolean
+  - _opened: boolean
+  + SensingDoor(sensor: Sensor)
+  + lock()
+  + unlock()
+  + open()
+  + close()
+  + timeOutCallback()
+  + proximityCallback()
+}
+
+class TimedDoor {
+  - TIME_OUT: int
+  - _locked: boolean
+  - _opened: boolean
+  + TimedDoor(timer: Timer)
+  + lock()
+  + unlock()
+  + open()
+  + close()
+  + timeOutCallback()
+  + proximityCallback()
+}
+
+class Timer {
+  + register(timeOut: long, door: Door): void
+}
+
+Door <|.. SensingDoor
+Door <|.. TimedDoor
+Sensor --|> Door
+Timer --|> Door
+
+@enduml

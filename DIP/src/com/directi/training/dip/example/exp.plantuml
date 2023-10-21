@@ -1,0 +1,19 @@
+@startuml exp
+
+class Lamp {
+  + turnOn()
+  + turnOff()
+  + getColor()
+  + setColor(color: int)
+}
+
+class Button {
+  - _lamp: Lamp
+  - _state: boolean
+  + Button(lamp: Lamp)
+  + toggle()
+}
+
+Button --> Lamp
+
+@enduml

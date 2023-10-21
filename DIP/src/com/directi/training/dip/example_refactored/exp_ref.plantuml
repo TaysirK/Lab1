@@ -1,0 +1,33 @@
+@startuml exp_ref
+
+interface Equipment {
+  + turnOn()
+  + turnOff()
+}
+
+class Lamp {
+  + turnOn()
+  + turnOff()
+  + getColor()
+  + setColor(color: int)
+}
+
+class Fan {
+  + turnOn()
+  + turnOff()
+  + getSpeed()
+  + setSpeed(speed: int)
+}
+
+class Button {
+  - _state: boolean
+  - _equipment: Equipment
+  + Button(equipment: Equipment)
+  + toggle()
+}
+
+Button --> Equipment
+Equipment <|.. Lamp
+Equipment <|.. Fan
+
+@enduml

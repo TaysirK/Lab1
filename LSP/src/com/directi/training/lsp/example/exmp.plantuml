@@ -1,0 +1,24 @@
+@startuml example
+
+class Rectangle {
+    +getWidth(): int
+    +setWidth(int width): void
+    +getHeight(): int
+    +setHeight(int height): void
+    +getArea(): int
+}
+
+class RectangleTest {
+    +testSetWidth_Rectangle(): void
+    +testSetWidth_Square(): void
+}
+
+class Square {
+    +setWidth(int width): void
+    +setHeight(int height): void
+}
+
+Rectangle --|> RectangleTest
+Rectangle <|-- Square
+
+@enduml

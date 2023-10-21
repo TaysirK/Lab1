@@ -1,0 +1,35 @@
+@startuml AreaCalculator
+
+class Shape {
+  - _shapeType: ShapeType
+  + getType(): ShapeType
+}
+
+class Circle {
+  - _radius: double
+  + Circle(radius: double)
+  + getRadius(): double
+}
+
+class Square {
+  - _side: double
+  + Square(side: double)
+  + getSide(): double
+}
+
+class AreaCalculator {
+  + calculateArea(shapes: List<Shape>): void
+  + calculateSquareArea(square: Square): double
+  + calculateCircleArea(circle: Circle): double
+}
+
+enum ShapeType {
+  CIRCLE
+  SQUARE
+}
+
+Shape --|> Circle
+Shape --|> Square
+AreaCalculator --> Shape : uses
+
+@enduml

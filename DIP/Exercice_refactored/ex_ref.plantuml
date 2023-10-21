@@ -1,0 +1,49 @@
+@startuml Ex_ref
+
+interface DataSource {
+    +getData(): String
+}
+
+interface NetworkSource {
+    +fetchDataFromNetwork(): String
+}
+
+interface Encoder {
+    +encode(input: String): String
+}
+
+class MyDatabaseDataSource {
+    +getData(): String
+}
+
+class NetworkDataSource {
+    +fetchDataFromNetwork(): String
+}
+
+class FileDataSource {
+    +getData(): String
+}
+
+class Base64Encoder {
+    +encode(input: String): String
+}
+
+class EncodingModule {
+    +encode(dataSource: DataSource, encoder: Encoder): void
+    +encode(networkSource: NetworkSource, encoder: Encoder): void
+}
+
+class EncodingModuleClient {
+    +main(args: String[]): void
+}
+
+DataSource <|.. MyDatabaseDataSource
+NetworkSource <|.. NetworkDataSource
+DataSource <|.. FileDataSource
+Encoder <|.. Base64Encoder
+EncodingModule o-- DataSource
+EncodingModule o-- Encoder
+EncodingModule o-- NetworkSource
+EncodingModuleClient --> EncodingModule
+
+@enduml
